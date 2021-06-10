@@ -331,9 +331,9 @@ def YoloLoss(anchors, classes=80, ignore_thresh=0.5):
         obj_loss = binary_crossentropy(true_obj, pred_obj)
         obj_loss = obj_mask * obj_loss + \
             (1 - obj_mask) * ignore_mask * obj_loss
-        # TODO: use binary_crossentropy instead
-        class_loss = obj_mask * sparse_categorical_crossentropy(
-            true_class_idx, pred_class)
+
+        loss_func = binary_crossentropy if classes == 1 else sparse_categorical_crossentropy        
+        class_loss = obj_mask * loss_func(true_class_idx, pred_class)        
 
         # 6. sum over (batch, gridx, gridy, anchors) => (batch, 1)
         xy_loss = tf.reduce_sum(xy_loss, axis=(1, 2, 3))
