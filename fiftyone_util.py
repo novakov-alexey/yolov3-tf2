@@ -2,13 +2,8 @@ import fiftyone as fo
 import click
 
 
-def load_dataset(name: str):
-    # dataset_dir = "/Users/Alexey_Novakov/fiftyone/open-images-v6-validation-100"
+def load_dataset(name: str):    
     return fo.load_dataset(name)
-    # return fo.Dataset.from_dir(
-    #     dataset_dir, fo.types.FiftyOneImageDetectionDataset, name="open-images-v6-train-100"
-    # )
-
 
 def export_tf_record(dataset: fo.core.dataset.Dataset, export_dir: str):
     label_field = "ground_truth"  # for example

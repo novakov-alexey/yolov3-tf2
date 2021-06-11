@@ -21,3 +21,9 @@ infer:
 		--num_classes=1 \
 		--weights=./checkpoints/yolov3_train_4.tf \
 		--image=./data/test-toy.jpg
+
+load-datasets:
+	python fiftyone_util.py load_datasets
+
+convert-2-tf-records:
+	python fiftyone_util.py convert
